@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Reel</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            text-align: center;
+            margin-top: 10px;
+        }
+        h2{
+            text-align: left;
+            line-height: 50px;
+        }
+        .block{
+            display: inline-block;
+        }
+        .block:first-child{
+            margin-right: 150px;
+        }
+        .btn{
+            display: inline-block;
+            font-size: 15px;
+            color: #fff;
+            line-height: 25px;
+            background-color: rgba(42, 191, 255, .8);
+            border-radius: 5px;
+            border: 0;
+            padding: 5px;
+            cursor: pointer;
+            margin-top: 30px;
+        }
+        .btn:hover{
+            background-color: #3f9ef9;
+        }
+        .wrap{
+            width: 300px;
+            height: 370px;
+            position: relative;
+            background-color: #3f9ef9;
+        }
+        .ani{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://mtapplet.meitudata.com/5c2c248edca001206.jpg');
+            background-size: 300px auto;
+            background-repeat: no-repeat;
+            background-position: 0 0;
+            box-sizing: border-box;
+            background-clip: content-box;
+            transition: all .3s;
+        }
+        .padding.hide{
+            padding: 0 150px;
+        }
+        .reel{
+            width: 50%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            transition: all .3s;
+            overflow: hidden;
+        }
+        .overflow-left{
+            left: 0;
+        }
+        .overflow-right{
+            left: 50%;
+        }
+        .reel .img{
+            width: 100%;
+            height: 100%;
+            background-image: url('https://mtapplet.meitudata.com/5c2c248edca001206.jpg');
+            background-size: 300px auto;
+            background-repeat: no-repeat;
+            position: absolute;
+            left: 0;
+            top: 0;
+            transition: all .3s;
+        }
+        .right-img{
+            background-position: -150px 0;
+        }
+
+        .overflow.hide .overflow-left {
+            transform: translateX(100%)
+        }
+        .overflow.hide .left-img {
+            transform: translateX(-100%)
+        }
+        .overflow.hide .overflow-right {
+            transform: translateX(-100%)
+        }
+        .overflow.hide .right-img {
+            transform: translateX(100%)
+        }
+
+        .example{
+            width: 200px;
+            height: 400px;
+            margin-top: 30px;
+            display: inline-block;
+            background-color: #3f9ef9;
+            position: relative;
+            animation: example-wrap 4s linear infinite alternate;
+            display: none;
+        }
+        .example.show{
+            display: inline-block;
+        }
+        .example-img{
+            position: absolute;
+            right: 0;
+            top: 15px;
+            width: 150px;
+            height: 370px;
+            background-image: url('https://mtapplet.meitudata.com/5c2c248edca001206.jpg');
+            background-size: 300px auto;
+            background-repeat: no-repeat;
+            background-position: 0 0;
+            animation: example-img-wrap 4s linear infinite alternate;
+        }
+
+        @keyframes example-wrap{
+            0%{
+                transform: translateX(0)
+            }
+            100%{
+                transform: translateX(150px)
+            }
+        }
+        @keyframes example-img-wrap{
+            0%{
+                transform: translateX(0)
+            }
+            100%{
+                transform: translateX(-150px)
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="block">
+        <h2>使用 padding: </h2>
+        <div class="wrap">
+            <div class="ani padding"></div>
+        </div>
+        <div class="btn" data-type="padding">收起 / 展开</div>
+    </div>
+    <div class="block">
+        <h2>使用 overflow: </h2>
+        <div class="wrap overflow">
+            <div class="reel overflow-left">
+                <div class="img left-img"></div>
+            </div>
+            <div class="reel overflow-right">
+                <div class="img right-img"></div>
+            </div>
+        </div>
+        <div class="btn" data-type="overflow">收起 / 展开</div>
+        <div class="btn" data-type="example">原理</div>
+    </div>
+    <div>
+        <div class="example">
+            <div class="example-img"></div>
+        </div>
+    </div>
+    <script src="./jq.js"></script>
+    <script>
+        $('.btn').on('click', function(params) {
+            var type = $(this).data('type')
+            if (type === 'example') {
+                $('.' + type).addClass('show')
+            } else {
+                $('.' + type).toggleClass('hide')
+            }
+        })
+    </script>
+</body>
+</html>

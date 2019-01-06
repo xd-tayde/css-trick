@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>wave</title>
+    <style>
+        body{
+            background-color: rgba(0, 0, 0, .8)
+        }
+        .wrap{
+            width: 500px;
+            height: 500px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin: -250px 0 0 -250px;
+            border-radius: 5px;
+            background-image: -webkit-linear-gradient(bottom, #accbee 0%, #e7f0fd 100%);
+            overflow: hidden;
+            transition: all .8s;
+        }
+        .wrap.scale{
+            transform-origin: 50%;
+            transform: scale(.5);
+            overflow: visible;
+        }
+        .wave{
+            width: 1000px;
+            height: 1025px;
+            position: absolute;
+            top: -25%;
+            left: 50%;
+            margin-left: -500px;
+            margin-top: -500px;
+            border-radius: 35%;
+            background: rgba(255, 255, 255, 0.75);
+            animation: wave 15s infinite linear;
+        }
+        .btn{
+            width: 100px;
+            height: 40px;
+            font-size: 20px;
+            text-align: center;
+            line-height: 40px;
+            background-color: #accbee;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        @keyframes wave{
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="wave"></div>
+    </div>
+    <div class="btn">原理</div>
+    <script src="./jq.js"></script>
+    <script>
+        $('.btn').on('click', function() {
+            $('.wrap').toggleClass('scale') 
+        })
+    </script>
+</body>
+</html>

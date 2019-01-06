@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html class="bd">
+<head>
+<meta charset="utf-8"/>
+<meta name="author" content=""/>
+<title>web 3d</title>
+<style>
+body{ background:#fff;}
+.stage{ width:400px; height:400px; position:relative; position:absolute; left:65%; top:50%; margin:-200px 0 0 -200px;perspective:1000px; perspective-origin:50% 50%;}
+.container{ width:100%; height:100%; transform-style:preserve-3d;transform-origin:center center;}
+#cube{ transition:all 1s ease 0s; }
+#cube figure{ width:396px; height:396px; border:#000 2px solid; position:absolute; display:block; line-height:396px; font-size:130px; font-weight:700; color:#fff; text-align:center; margin:0; }
+#cube .front{ background:rgba(26,188,156,0.8); transform:rotateY(0deg) translateZ(200px);}
+#cube .back{  background:rgba(52,152,219,0.8); transform: rotateX(180deg) translateZ(200px);}
+#cube .right{  background:rgba(142,68,173,0.8); transform:rotateY(90deg) translateZ(200px);}
+#cube .left{  background:rgba(52,73,94,0.8); transform:rotateY(-90deg) translateZ(200px);}
+#cube .top{  background:rgba(243,156,18,0.8); transform:rotateX(90deg) translateZ(200px);}
+#cube .bottom{  background:rgba(192,57,43,0.8); transform:rotateX(-90deg) translateZ(200px);}
+
+.show-back{ transform:rotateX(-180deg); }
+.show-left{ transform:rotateY(90deg);}
+.show-right{ transform:rotateY(-90deg);}
+.show-top{ transform:rotateX(-90deg);}
+.show-bottom{ transform:rotateX(90deg); }
+
+.action{ text-align:center;width: 250px;position: absolute;left: 0;top: 218px;}
+.action a{ background:#eaeaea; width:40px; height:20px; line-height:20px; border:#999 2px solid; text-align:center; text-decoration:none; color:#555; font-size:12px; display:inline-block;}
+.action a:active{ background:#ddd;}
+.subaction{width: 265px;position: absolute; left: 0; top: 320px;text-align: center;}
+.subaction a{ color:#999; display:block; }
+
+a.btn{
+	display: inline-block;
+	border: none;
+	border-radius: 5px;
+	background-color: rgb(26,188,156);
+	color: #fff;
+	padding: 10px;
+	margin-top: 10px;
+	text-decoration: none;
+	cursor: pointer;
+}
+a.btn:hover{
+	opacity: .9;
+}
+</style>
+</head>
+<body>
+<div class="action">
+	<a class="btn" data-class="show-front">前</a>
+	<a class="btn" data-class="show-back">后</a>
+	<a class="btn" data-class="show-left">左</a>
+	<a class="btn" data-class="show-right">右</a>
+	<a class="btn" data-class="show-top">上</a>
+	<a class="btn" data-class="show-bottom">下</a>
+</div>
+<div class="subaction">
+	<a class="btn" id="tz200">translateZ(200px)</a>
+	<a class="btn" id="tz200r">translateZ(-200px)</a>
+	<a class="btn" id="tr_scale">transform: scale(1.3)</a>
+	<a class="btn" id="tr_scale_0">transform: scale(.7)</a>
+	<a class="btn" id="po_lc">perspective-origin:150% 50%</a>
+	<a class="btn" id="po_rc">perspective-origin:center center</a>
+	<p>perspective：<span id="output">1000px</span></p>
+	<a class="btn" id="per_add">+</a>
+	<a class="btn" id="per_less">-</a>
+</div>
+<div class="stage">
+	<div class="container" id="cube">
+		<figure class="front">前</figure>
+		<figure class="back">后</figure>
+		<figure class="right">右</figure>
+		<figure class="left">左</figure>
+		<figure class="top">上</figure>
+		<figure class="bottom">下</figure>
+	</div>
+</div>
+
+<script type="text/javascript" src="http://s1.img4399.com/base/js/jquery.min.1.6.1.js"></script>
+<script type="text/javascript" src="jquery.mousewheel.js"></script>
+<script>
+$(".action a").bind("click",function(){
+	var cls = $(this).attr("data-class");
+	var rotate;
+	switch (cls) {
+		case 'show-front':
+			rotate = 'rotateY(0)';
+			break;
+		case 'show-back':
+			rotate = 'rotateX(-180deg)';
+			break;
+		case 'show-left':
+			rotate = 'rotateY(90deg)';
+			break;
+		case 'show-right':
+			rotate = 'rotateY(-90deg)';
+			break;
+		case 'show-top':
+			rotate = 'rotateX(-90deg)';
+			break;
+		case 'show-bottom':
+			rotate = 'rotateX(90deg)';
+			break;
+		default:
+			break;
+	}
+	$('#cube').css('transform', rotate)
+	return false;
+});
+$("#tz200").bind("click",function(){
+	$("#cube").css("transform","translateZ(200px)");
+	return false;
+});
+$("#tz200r").bind("click",function(){
+	$("#cube").css("transform","translateZ(-200px)");
+	return false;
+});
+$("#po_lc").bind("click",function(){
+	$(".stage").css("perspective-origin","150% 50%");
+	return false;
+});
+$("#po_rc").bind("click",function(){
+	$(".stage").css("perspective-origin","center center");
+	return false;
+});
+// $("#tr_ll").bind("click",function(){
+// 	$("#cube").css("perspective-origin","");
+// 	return false;
+// });
+
+$("#tr_scale").bind("click",function(){
+	$("#cube").css("transform","scale(1.3)");
+	return false;
+});
+$("#tr_scale_0").bind("click",function(){
+	$("#cube").css("transform","scale(.7)");
+	return false;
+});
+
+$('#per_add').bind('click', function() {
+	var pers = parseInt($(".stage").css("perspective"));
+	pers=pers+100;
+	$(".stage").css("perspective",pers);
+	$("#output").text(pers+"px");
+})
+
+$('#per_less').bind('click', function() {
+	var pers =parseInt($(".stage").css("perspective"));
+	pers=pers-100;
+	$(".stage").css("perspective",pers);
+	$("#output").text(pers+"px");
+})
+
+// $(document).bind("mousewheel",function(e,delta){
+// 	console.log(e,delta);
+// 	var pers =parseInt($(".stage").css("perspective"));
+// 	if(delta > 0){
+// 		pers=pers+100;
+// 		$(".stage").css("perspective",pers);
+// 	}else{
+// 		pers=pers-100;
+// 		$(".stage").css("perspective",pers);
+// 	};
+// 	$("#output").val(pers+"px");
+// });
+
+</script>
+</body>
+</html>

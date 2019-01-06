@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SVG</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        body{
+            text-align: center;
+        }
+        .text{
+            font-size: 200px;
+            stroke-width: 2px;
+            stroke-linejoin: round;
+            font-family: cursive;
+        }
+        .text-1{
+            stroke: #3f9ef9;
+        }
+        /* .text-2{
+            stroke: #108016;
+        }
+        .text-3{
+            stroke: #F2FF14;
+        }
+        .text-4{
+            stroke: #FB9505;
+        }
+        .text-5{
+            stroke: #F60A0A;
+        } */
+        .run .text{
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+        }
+        .run .text-1{
+            animation: run 5s ease-out infinite forwards;
+        }
+        /* .run .text-2{
+            animation: run 5s ease-out infinite 2s forwards;
+        }
+        .run .text-3{
+            animation: run 5s ease-out infinite 3s forwards;
+        }
+        .run .text-4{
+            animation: run 5s ease-out infinite 4s forwards;
+        }
+        .run .text-5{
+            animation: run 5s ease-out infinite 5s forwards;
+        } */
+        label{
+            font-size: 24px;
+            line-height: 40px;
+            display: block;
+            text-align: center;
+            margin-top: 30px;
+            color: #3f9ef9;
+        }
+        input{
+            margin-left: 20px;        
+        }
+        .btn{
+            display: inline-block;
+            width: 150px;
+            text-align: center;
+            text-decoration: none;
+            color: #3f9ef9;
+            border: 2px solid #3f9ef9;
+            line-height: 40px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 30px;
+            font-size: 26px;
+        }
+        .btn:hover{
+            color: #fff;
+            background-color: #3f9ef9;
+        }
+        @keyframes run{
+            100%{
+                stroke-dashoffset: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <svg viewbox="0 0 1320 300" class="stroke">
+        <symbol id="s-text">
+            <text font-weight="bold" fill="#fff" text-anchor="middle" x="50%" y="50%" dy=".35em">
+            XGFE
+            </text>
+        </symbol>  
+        <use xlink:href="#s-text" class="text text-1" ></use>
+        <!-- <use xlink:href="#s-text" class="text text-2" ></use>
+        <use xlink:href="#s-text" class="text text-3" ></use>
+        <use xlink:href="#s-text" class="text text-4" ></use>
+        <use xlink:href="#s-text" class="text text-5" ></use> -->
+    </svg>
+    <label>
+        stroke-dasharray:
+        <input class="input" data-type="dasharray" type="range" max="1000" min="0" step="10" value="0">
+    </label>
+    <label>
+        stroke-dashoffset:
+        <input class="input" data-type="dashoffset" type="range"  max="1000" min="0" step="10" value="0">
+    </label>
+    <div class="btn">Run</div><br/>
+    <script src="./jq.js"></script>
+    <script>
+        $('.input').on('input', function() {
+            var type = $(this).data('type')
+            var $text = $('.text')
+            $text.css('stroke-'+ type, $(this).val())
+            console.log(type + ':' , $(this).val());
+        })
+        $('.btn').on('click', function() {
+            $('.text').removeAttr('style');
+            $('.stroke').addClass('run');
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Demo</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        h1{
+            font-size: 30px;
+            line-height: 70px;
+            color: #3f9ef9;
+            text-align: center;
+            font-weight: normal;
+        }
+        ul{
+            text-align: center;
+        }
+        li{
+            list-style: none;
+            font-size: 18px;
+            line-height: 40px;
+            padding: 10px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .item{
+            position: relative;
+            display: inline-block;
+            width: 150px;
+            text-align: center;
+            text-decoration: none;
+            color: #3f9ef9;
+            border: 2px solid #3f9ef9;
+            line-height: 40px;
+            border-radius: 5px;
+            transition: all .3s;
+        }
+        .item::before{
+            content: "";
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #3f9ef9;
+            transform: scaleY(0);
+            transform-origin: 50% 0;
+            transition-property: transform;
+            transition-duration: 0.5s;
+            transition-timing-function: ease-out;
+        }
+        .item:hover{
+            color: #fff;
+            /* background-color: #3f9ef9; */
+            /* box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5); */
+            /* transform: scale(1.05); */
+        }
+        .item:hover::before{
+            transform: scale(1);
+            transform: scaleY(1);
+            transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+        }
+    </style>
+</head>
+<body>
+    <h1>视觉的魅力</h1>
+    <ul>
+        <li><a class="item" target="_blank" href="./cube.html">3D动画演示</a></li>
+        <li><a class="item" target="_blank" href="http://h5.meitu.com/xx_jx3/dist/">镜头与卷轴演示</a></li>
+        <li><a class="item" target="_blank" href="./reel.html">卷轴实现演示</a></li><br/>
+        <li><a class="item" target="_blank" href="http://f2er.meitu.com/gwc/mz_hls/dist/">幕布演示</a></li>
+        <li><a class="item" target="_blank" href="./curtain.html">幕布实现演示</a></li>
+        <li><a class="item" target="_blank" href="./wave.html">波浪</a></li><br/>
+        <li><a class="item" target="_blank" href="./bottle.html">粘性介质</a></li>
+        <li><a class="item" target="_blank" href="http://f2er.meitu.com/gwc/firework/">烟花演示</a></li>
+        <li><a class="item" target="_blank" href="./fireworks.html">烟花实现</a></li><br/>
+        <li><a class="item" target="_blank" href="http://xiuxiu.huodong.meitu.com/icefantasy/">烟雾</a></li>
+        <li><a class="item" target="_blank" href="./snow/index.html">雪花</a></li>
+        <li><a class="item" target="_blank" href="https://h5.meitu.com/costa/dist/">光斑</a></li><br/>
+        <li><a class="item" target="_blank" href="./stroke.html">描边动画</a></li>
+        <li><a class="item" target="_blank" href="./animatemotion.html">路径动画</a></li>
+        <li><a class="item" target="_blank" href="./curve.html">曲线运动</a></li><br/>
+        <li><a class="item" target="_blank" href="./star/index.html">星空</a></li>
+        <li><a class="item" target="_blank" href="https://h5.meitu.com/xiuxiu/fuyao/">帧动画-1</a></li>
+        <li><a class="item" target="_blank" href="https://h5.meitu.com/xiuxiu/halloween/">帧动画-2</a></li><br/>
+        <li><a class="item" target="_blank" href="./bone.html">级联传动</a></li>
+        <li><a class="item" target="_blank" href="http://www.17sucai.com/preview/11/2017-05-21/book/demo.html">传动骨骼-1</a></li>
+        <li><a class="item" target="_blank" href="http://f2er.meitu.com/gwc/makeawish/">传动骨骼-2</a></li><br/>
+        <li><a class="item" target="_blank" href="https://h5.meitu.com/xiu_xmas/">应用</a></li>
+        <li><a class="item" target="_blank" href="https://dragonbones.github.io/demo/CoreElement/index.html">复杂骨骼</a></li>
+        <li><a class="item" target="_blank" href="https://h5.meitu.com/xiuxiu/true-me/">3D渲染场馆</a></li><br/>
+        <li><a class="item" target="_blank" href="https://aframe.io/examples/showcase/snowglobe/">Aframe</a></li>
+        <li><a class="item" target="_blank" href="./test.html">动画性能测试</a></li><br/>
+    </ul>
+</body>
+</html>

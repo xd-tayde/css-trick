@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>bones</title>
+    <style>
+        .wrap{
+            width: 500px;
+            height: 400px;
+            border: 2px solid #3f9ef9;
+            position: absolute;
+            left: 50%;
+            top: 20%;
+            border-radius: 10px;
+            margin-left: -250px;
+        }
+        .block{
+            background-color: #3f9ef9;
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: rotate(-90deg)
+        }
+        i{
+            display: inline-block;
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: #3f9ef9;
+            left: 2px;
+            top: 0;
+            animation: rotate 4s linear infinite;
+        }
+        .now{
+            color: #3f9ef9;
+        }
+        .btn{
+            margin-left: 30px;
+            display: inline-block;
+            width: 50px;
+            height: 30px;
+            text-align: center;
+            line-height: 29px;
+            font-size: 20px;
+            color: #3f9ef9;
+            border: 2px solid #3f9ef9;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn:hover{
+            color: #fff;
+            background-color: #3f9ef9;
+        }
+        @keyframes rotate{
+            0%{
+                transform: rotate(0);
+            }
+            25%{
+                transform: rotate(10deg);
+            }
+            50%{
+                transform: rotate(0deg);
+            }
+            75%{
+                transform: rotate(-10deg);
+            }
+            100%{
+                transform: rotate(0deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="block"></div>
+    </div>
+    <div class="now">
+        <span class="text">级联个数： 10个</span>
+        <span class="btn" data-type="plus">+</span>
+        <span class="btn" data-type="less">-</span>
+    </div>
+    <script src="./jq.js"></script>
+    <script>
+        var count = 10
+        window.onload = function() {
+            set(count)
+        }
+
+        $('.btn').on('click', function() {
+            var type = $(this).data('type')
+            if(type == 'plus') {
+                count++
+                set(count)
+            } else {
+                count--
+                set(count)
+            }
+        })
+
+        function set(count) {
+            if(count < 1)return
+            var length = 350
+            var html = ''
+            for (var i = 0; i < count; i++) {
+                var width = length / count
+                var left = i == 0 ? 0 : width
+                html += '<i style="width: ' + width + 'px;left: ' + left + 'px;">'
+            }
+            for (var i = 0; i < count; i++) {
+                html += '</i>'
+            }
+            $('.block').html(html)
+            $('.text').text('级联个数：' + count + '个')
+        }
+    </script>
+</body>
+</html>

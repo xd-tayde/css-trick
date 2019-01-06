@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Curtain</title>
+    <style>
+        .curtain{
+            position: absolute;
+            width: 46px;
+            height: 500px;
+            background-image: -webkit-repeating-linear-gradient(left, #ea69a4, #f7a0ca 20%, #d75c82, #ea69a4);
+            transform-origin: 50% 0%;
+        }
+        .curtain-1{
+            left: 100px;
+            top: 50px;   
+            animation: curtain-ani 2s ease-in-out infinite;         
+        }
+        .curtain-wrap{
+            width: 92px;
+            height: 500px;
+            position: absolute;
+            top: 50px;
+            left: 350px;
+        }
+        .curtain-move{
+            width: 92px;
+            height: 500px;
+            position: absolute;
+            left: 650px;
+            top: 50px;
+            animation: curtain-move-ani 2s ease-in-out infinite;
+        }
+        .curtain-back{
+            animation: backLeft 2s ease-in-out infinite;
+            background: #ea69a4;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: -10%;
+            transform-origin: 50% 0%;
+        }
+        .curtain-2{
+            display: inline-block;
+            animation: curtain-ani 2s ease-in-out infinite .05s;
+        }
+        .curtain-3{
+            left: 46px;
+            animation: curtain-ani 2s ease-in-out infinite;
+        }
+        @keyframes curtain-move-ani{
+            100%{
+                transform: translateX(120%)
+            }
+        }
+        @keyframes curtain-ani{
+            20% {
+                transform: rotate3d(0, 0, 1, 3deg);
+            }
+            40% {
+                transform: rotate3d(0, 0, 1, -1.5deg);
+            }
+            60% {
+                transform: rotate3d(0, 0, 1, 0.8deg);
+            }
+            80% {
+                transform: rotate3d(0, 0, 1, -0.3deg);
+            }
+            100% {
+                transform: rotate3d(0, 0, 1, 0deg);
+            }
+        }
+        @keyframes backLeft{
+            20% {
+                transform: skew(-3deg);
+            }
+            40% {
+                transform: skew(1.5deg);
+            }
+            60% {
+                transform: skew(-0.8deg);
+            }
+            80% {
+                transform: skew(0.3deg);
+            }
+            100% {
+                transform: skew(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="curtain curtain-1"></div>
+    <div class="curtain-wrap">
+        <div class="curtain-back"></div>
+    </div>
+    <div class="curtain-move">
+        <div class="curtain-back"></div>
+        <div class="curtain curtain-2"></div>
+        <div class="curtain curtain-3"></div>
+    </div>
+</body>
+</html>

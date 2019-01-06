@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>animatemotion</title>
+    <style>
+        svg{
+            position: absolute;
+            left: 50%;
+            top: 30%;
+            transform: translate(-50%, -50%);
+        }
+        use{
+            transform: translateY(-44px);
+        }
+        img{
+            width: 500px;
+            position: absolute;
+            left: 50%;
+            top: 60%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <svg width="1000" height="300" xmlns="http://www.w3.org/2000/svg">
+        <symbol>
+            <image id="s-img" xlink:href="./1.jpg" height="40" width="50"/>
+        </symbol>
+        <use xlink:href="#s-img">
+            <animatemotion path="M 0 0 C 200 250 250 50 550 150 C 850 250 700 180 1000 200 " 
+                begin="0s" 
+                dur="6s" 
+                rotate="auto" 
+                repeatcount="indefinite"
+            />
+        </use>
+        <path class="path" d="M 0 0 C 200 250 250 50 550 150 C 850 250 700 180 1000 200 " stroke="#3f9ef9" stroke-width="3" fill="none" />
+    </svg>
+    <img src="./animatemotion.png" alt="">
+</body>
+</html>

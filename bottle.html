@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bottle</title>
+    
+    <style type="text/css">
+        body {
+            display: flex;
+            font-size: 2rem;
+            overflow: hidden;
+        }
+
+        .Box{
+            position: absolute;
+            width: 50vw;
+            height: 100vh;
+            background-color: #fff;
+        }
+        .Box-2{
+            position:absolute;
+            left:50%;
+            filter: contrast(100);
+        }
+
+        .BigCircle,
+        .SmallCircle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            background-color: #40b4e0;
+            filter: blur(2vmin) 
+        }
+
+        .BigCircle {
+            width: 30vmin;
+            height: 24vmin;
+            margin: -15vmin;
+            border-radius: 20px;
+        }
+
+        .SmallCircle {
+            width: 15vmin;
+            height: 15vmin;
+            margin: -7.5vmin;
+            background-color: #40b4e0;
+            border-radius: 50%;
+            animation: move 1.5s infinite alternate cubic-bezier(0.18, 0, 0.26, 1);
+            --degree: 360deg;
+        }
+
+        @keyframes move {
+            0% {
+                transform: rotate(var(--degree)) translateY(0);
+            }
+            100% {
+                transform: rotate(var(--degree)) translateY(-30vmin);
+            }
+        }
+
+        .Box-1{
+            background-color: black;
+        }
+
+        .fire {
+            width: 0;
+            height: 0;
+            border-radius: 45%;
+            box-sizing: border-box;
+            border: 100px solid #000;
+            border-bottom: 100px solid transparent;
+            background-color: #b5932f;
+            transform: scaleX(.35);
+            filter: blur(20px) contrast(30);
+            position: absolute;
+            left: 226px;
+            top: 124px;
+        }
+        .dot {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #000;
+            border-radius: 50%;
+        }
+        .btm{
+            width: 80px;
+            height: 200px;
+            background: url('./2.png') no-repeat 0 0;
+            background-size: 100% auto;
+            position: absolute;
+            left: 283px;
+            top: 345px;
+        }
+        @keyframes move {
+            100% {
+                transform: translate3d(0, -350px, 0);
+            }
+        }
+    </style>
+
+</head>
+<body>
+    <div class="Box Box-2">
+        <div class="BigCircle"></div>
+        <div class="SmallCircle"></div>
+    </div>
+    <div class="Box Box-1">
+        <div class="fire"></div>
+        <div class="btm"></div>
+    </div>
+    <script src="./jq.js"></script>
+    <script>
+        window.onload = function() {
+            var dotCount = 50
+            var animationTime = 2;
+            var delayTime = 3;
+
+            function getRandomNum(Min, Max) {
+                var Range = Max - Min
+                return (Min + Math.round(Math.random() * Range))
+            }
+
+            var html = ''
+            for (let i = 0; i < dotCount; i++) {
+                var style = "bottom: -" + getRandomNum(160, 240) + "px;left:" + getRandomNum(-120, 120) + "px;animation: move " + (getRandomNum(7, animationTime * 13) / 10) + 's infinite ' + (getRandomNum(0, delayTime * 20) / 10) + 's linear;'
+               html += '<span class="dot dot-'+ i +'" style="'+ style +'"></span>'
+            }
+            $('.fire').html(html);
+        }
+    </script>
+</body>
+</html>

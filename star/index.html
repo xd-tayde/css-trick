@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>stars</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html, body{
+            background-color: black;
+            width: 100%;
+            height: 100%;
+        }
+        div{
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .stars{
+            background: #000 url('./stars.png') repeat top center;
+            z-index: 0;
+            animation: stars-move 500s linear infinite;
+        }
+        .twinkling{
+            background: transparent url('./twinkling.png') repeat top center;
+            z-index: 1;
+            animation: twinkling-move 200s linear infinite;
+        }
+        .clouds{
+            background: transparent url('./clouds.png') repeat top center;
+            z-index: 3;
+            animation: clouds-move 200s linear infinite;
+        }
+        .car{
+            width: 50px;
+            height: 40px;
+            background: url('../1.jpg') no-repeat 0 0;
+            background-size: contain;
+            top: 20%;
+            left: -50px;
+            z-index: 4;
+            animation: car-move 20s linear infinite;
+        }
+        @keyframes stars-move{
+            0%{
+                transform: rotate(0)
+            }
+            100%{
+                transform: rotate(360deg)
+            }
+        }
+        @keyframes twinkling-move{
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: -10000px 5000px;
+            }
+        }
+        @keyframes clouds-move{
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 10000px 0;
+            }
+        }
+        @keyframes car-move{
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translate(2000px, 30px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="twinkling"></div>
+    <div class="clouds"></div>
+    <!-- <div class="car"></div> -->
+</body>
+</html>
